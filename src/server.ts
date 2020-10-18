@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import 'express-async-errors'
@@ -19,4 +20,4 @@ app.use(errorHandller)
 
 
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
