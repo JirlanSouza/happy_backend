@@ -11,7 +11,7 @@ export default {
         const orphanages = await orphanagesRepository.find({
             relations: ['images']
         });
-        console.log(orphanages)
+        
         return response.json(orphanagesView.renderMany(orphanages));
     },
 
@@ -73,7 +73,7 @@ export default {
 
         await schema.validate(data, {
             abortEarly: false,
-        })
+        });
     
         const orphanage = orphanagesRepository.create(data);
     
