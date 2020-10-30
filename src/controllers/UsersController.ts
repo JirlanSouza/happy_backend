@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 export default {
@@ -58,5 +59,39 @@ export default {
         await userRepository.save(user);
 
         response.status(201).json(user);
+    },
+
+    async signIn(request:Request, response: Response) {
+        const { email, password } = request.body;
+
+        const userRepository = getRepository(User);
+
+        const user = await userRepository.findOne({email: email});
+
+        if(!user) {
+            return response.status(401).json({error: 'User not found'});
+        }
+
+        const { id, name } = user;
+
+        const isValidPassword  = await bcrypt.compare(password, user.password);
+        
+        if(!isValidPassword) {
+            return response.status(401).json({error: 'Invalid password'});
+        }
+
+        const token = await  jwt.sign({ id: id }, process.env.HASH_TOKEN as string, {
+            expiresIn: 86400
+        });
+        const responseData = {
+            token,
+            user: {
+                id,
+                name,
+                email
+            }
+        }
+
+        response.status(201).json(responseData);
     }
 }
