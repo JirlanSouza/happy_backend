@@ -16,4 +16,10 @@ export default class User {
 
     @Column()
     type: number;
+
+    @Column()
+    forgotToken: string;
+
+    @Column()
+    expiresForgotToken: number;
 }
