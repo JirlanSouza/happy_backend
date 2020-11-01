@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import usersView from '../views/usersView';
 import mailTranspoter from '../config/mail';
 import mailHtml from '../resources/forgotPasswordMail';
 
@@ -16,7 +17,7 @@ export default {
 
         const users = await UsersRepository.find();
 
-        return response.json(users)
+        return response.json(usersView.renderMany(users))
     },
 
     async show(request:Request, response: Response) {
@@ -26,7 +27,7 @@ export default {
 
         const user = await UsersRepository.findOneOrFail(id);
 
-        return response.json(user);
+        return response.json(usersView.render(user));
     },
 
     async create(request:Request, response: Response) {
@@ -69,7 +70,7 @@ export default {
 
         await userRepository.save(user);
 
-        response.status(201).json(user);
+        response.status(201).json(usersView.render(user));
     },
 
     async signIn(request:Request, response: Response) {
@@ -96,11 +97,7 @@ export default {
         });
         const responseData = {
             token,
-            user: {
-                id,
-                name,
-                email
-            }
+            user: usersView.render(user)
         }
 
         response.status(201).json(responseData);

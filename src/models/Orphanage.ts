@@ -1,10 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToMany, JoinColumn, PrimaryColumn } from 'typeorm';
 import Image from './Image'
+import { v4 as uuidv4 } from 'uuid'
 
 @Entity('orphanages')
 export default class Orphanage {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryColumn('uuid')
+    id: string;
 
     @Column()
     name: string;
