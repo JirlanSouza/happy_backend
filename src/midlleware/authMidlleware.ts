@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { promisify } from 'util';
 
 export default async (request:Request, response: Response,  next: NextFunction) => {
     const authHeader = request.headers.authorization;
@@ -25,7 +24,7 @@ export default async (request:Request, response: Response,  next: NextFunction) 
         const decoded = jwt.verify(token, 'happyqwertyuiopmgfcvbnmk');
         const { id } = decoded as Decoded
 
-        request.userId = id
+        request.body.userId = id
         next()
     } catch {
         return response.status(401).json({error: 'Token invalid'});
