@@ -9,6 +9,9 @@
         "build": "tsc",
         "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
     },
+    "engines": {
+    "node": "14.x"
+    },
     "dependencies": {
         "bcrypt": "^5.0.0",
         "cors": "^2.8.5",
