@@ -25,7 +25,7 @@ export default async (request:Request, response: Response,  next: NextFunction) 
         const decoded = jwt.verify(token, 'happyqwertyuiopmgfcvbnmk');
         const { id } = decoded as Decoded
 
-        request.userId = id
+        request.body.userId = id
         next()
     } catch {
         return response.status(401).json({error: 'Token invalid'});

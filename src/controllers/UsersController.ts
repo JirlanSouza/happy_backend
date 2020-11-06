@@ -20,7 +20,7 @@ export default {
     },
 
     async show(request:Request, response: Response) {
-        const { id } = request.params;
+        const { id } = request.body;
 
         const UsersRepository = getRepository(User);
 
