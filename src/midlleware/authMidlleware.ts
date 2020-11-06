@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { promisify } from 'util';
 
 export default async (request:Request, response: Response,  next: NextFunction) => {
     const authHeader = request.headers.authorization;

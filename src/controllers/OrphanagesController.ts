@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Orphanage from '../models/Orphanage';
 import orphanagesView from '../views/orphanagesView';
+import { v4 as uuidv4 } from 'uuid';
 import * as Yup from'yup';
 
 export default {
@@ -9,6 +10,7 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanages = await orphanagesRepository.find({
+            where: { pendingApproval: false },
             relations: ['images']
         });
         
@@ -43,10 +45,14 @@ export default {
 
         const requestImages = request.files as Express.Multer.File[];
         const images = requestImages.map(image => {
-            return { path: image.filename}
+            return {
+                id: uuidv4(),
+                path: image.filename
+            }
         });
 
         const data = {
+            id: uuidv4(),
             name,
             latitude,
             longitude,
@@ -58,6 +64,7 @@ export default {
         };
 
         const schema = Yup.object().shape({
+            id: Yup.string().required(),
             name: Yup.string().required(),
             latitude: Yup.number().required(),
             longitude: Yup.number().required(),
@@ -79,6 +86,6 @@ export default {
     
         await orphanagesRepository.save(orphanage);
     
-        return response.status(201).json(orphanage);
+        return response.status(201).json(orphanagesView.render(orphanage));
     }
 }
