@@ -22,7 +22,7 @@ export default async (request:Request, response: Response,  next: NextFunction) 
     }
     
     try {
-        const decoded = jwt.verify(token, 'happyqwertyuiopmgfcvbnmk');
+        const decoded = jwt.verify(token, process.env.HASH_TOKEN as string);
         const { id } = decoded as Decoded
 
         request.body.userId = id
