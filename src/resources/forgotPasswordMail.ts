@@ -1,11 +1,11 @@
 interface Context {
     name: string;
-    forgotToken: string;
+    linkResetPassword: string;
 }
 
 export default function mailHtml(context: Context) {
     return (
 
-        `<h1>Solicitação de resete de senha</h1><br><a>Utilize este tokem ${ context.forgotToken }</a>`
+        `<h1>Olá ${ context.name } recebemos a sua solicitação de recuperação de senha</h1><br><hr/><a href="${ context.linkResetPassword }">Clique aqui e acesso a página de recuperação de senha</a>`
     )
 }

@@ -104,11 +104,11 @@ export default {
     },
 
     async forgot(request:Request, response: Response) {
-        const { email } = request.body;
+        const { email, hostFrontEnd } = request.body;
 
         const userRepository = getRepository(User);
 
-        const user = await userRepository.findOne({ email: email });
+        const user = await userRepository.findOne({ email });
         
         if(!user) {
             return response.status(406).json({error: 'Acount not found'});
@@ -117,13 +117,14 @@ export default {
         const forgotToken = crypto.randomBytes(20).toString("hex");
         const expiresForgotToken = Date.now() + 3600
         const { name } = user;
+        const linkResetPassword = `${ hostFrontEnd }/${ forgotToken }`
 
         try {
             const mailSended = await mailTranspoter.sendMail({
                 from: '"Happy" <admin@happyapp.com>',
                 to: email,
                 subject: "Resetar senha",
-                html: mailHtml({ forgotToken, name}),
+                html: mailHtml({ name, linkResetPassword }),
             
             });
     
@@ -141,7 +142,8 @@ export default {
     },
 
     async resetPassword(request:Request, response: Response) {
-        const { forgotToken, newPassword } = request.body;
+        const forgotToken = request.params.token
+        const { newPassword } = request.body;
 
         const userRepository = getRepository(User);
 
