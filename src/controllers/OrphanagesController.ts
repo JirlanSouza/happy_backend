@@ -28,6 +28,17 @@ export default {
         return response.json(orphanagesView.renderMany(orphanages));
     },
 
+    async pendingNotification(request:Request, response: Response) {
+        const orphanagesRepository = getRepository(Orphanage);
+
+        const quantOrphanagesApprovalPending = await orphanagesRepository.count({ pendingApproval: true });
+        const hasOrphanagesApprovalPendingResponse = {
+            hasOrphanagesApprovalPending: quantOrphanagesApprovalPending > 0
+        }
+        
+        return response.json(hasOrphanagesApprovalPendingResponse);
+    },
+
     async show(request:Request, response: Response) {
         const { id } = request.params;
 

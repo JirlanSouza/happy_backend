@@ -18,6 +18,7 @@ routes.put('/users/resete_password/:token', UserController.resetPassword);
 
 routes.get('/orphanages', OrphanagesController.index);
 routes.get('/orphanages/pending', AuthMidlleware, OrphanagesController.pending);
+routes.get('/orphanages/pending/notification', AuthMidlleware, OrphanagesController.pendingNotification);
 routes.get('/orphanages/:id', OrphanagesController.show);
 routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
