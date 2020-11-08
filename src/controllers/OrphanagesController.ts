@@ -17,6 +17,17 @@ export default {
         return response.json(orphanagesView.renderMany(orphanages));
     },
 
+    async pending(request:Request, response: Response) {
+        const orphanagesRepository = getRepository(Orphanage);
+
+        const orphanages = await orphanagesRepository.find({
+            where: { pendingApproval: true },
+            relations: ['images']
+        });
+        
+        return response.json(orphanagesView.renderMany(orphanages));
+    },
+
     async show(request:Request, response: Response) {
         const { id } = request.params;
 
