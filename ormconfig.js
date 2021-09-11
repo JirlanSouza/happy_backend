@@ -8,7 +8,7 @@ module.exports = {
   entities: [process.env.TYPEORM_ENTITIES],
   migrations: [process.env.TYPEORM_MIGRATIONS],
   extra: {
-    ssl: false
+    ssl: process.env.NODE_ENV === 'production'
   },
   cli: {
     migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
