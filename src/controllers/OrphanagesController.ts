@@ -10,7 +10,7 @@ export default {
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanages = await orphanagesRepository.find({
-            //where: { pendingApproval: false },
+            where: { pendingApproval: false },
             relations: ['images']
         });
         
