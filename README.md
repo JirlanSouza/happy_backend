@@ -1,4 +1,27 @@
 # happy_backend
-Backend da aplicação Happy, em nodeJs.
-Happy é uma aplicão para ajudar as pessoas a encontrar orfanatos proximos em sua cidade
-e ver informações, como por exemplo detalhes de visitação, regras, dias e horário de visitas, contato etc.
+
+Happy é uma aplicão para ajudar as pessoas a encontrar orfanatos  
+proximos em sua cidade e ver informações, detalhes de visitação,  
+regras, dias e horário de visitas, contato etc.
+
+## Tecnologias utilizadas
+
+- Nodejs  
+- Express  
+- Typescript  
+- Typeorm  
+- PostgressSQL
+
+## Uso
+com **npm**  
+ `npm install`  
+ `npm run dev`  
+ 
+ ou com **yarn**  
+ `yarn`  
+ `yarn dev`
+
+## Licença
+Esta aplicação esta sob a licença MIT.
+    
+  
