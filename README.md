@@ -17,7 +17,7 @@ regras, dias e horário de visitas, contato etc.
 Instale o [**Nodejs**](https://nodejs.org/pt-br/download/) em seu pc se ainda não tiver.  
 Instale um banco de dados [**PostegreSQL**](https://www.postgresql.org/download/).  
 
-Altere as variàveis de ambiente que estão no arquivo [**.env.exemplo**](.env.exemplo)  
+Altere as variàveis de ambiente que estão no arquivo [**.env.example**](.env.example)  
 de acordo com as variáveis de seu ambiente e renomei o arquivo para **.env**  
  
 
