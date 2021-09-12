@@ -19,6 +19,7 @@ Instale um banco de dados [**PostegreSQL**](https://www.postgresql.org/download/
 
 Altere as variàveis de ambiente que estão no arquivo [**.env.example**](.env.example)  
 de acordo com as variáveis de seu ambiente e renomei o arquivo para **.env**  
+ou export essas mesmas variàveis de ambiente em seu sistema operacional.  
  
 
 com **npm** rode os comandos  
