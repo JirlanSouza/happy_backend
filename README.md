@@ -23,12 +23,12 @@ de acordo com as variáveis de seu ambiente e renomei o arquivo para **.env**
 
 com **npm** rode os comandos  
  `npm install`  
- `npm run typeorm migration:run`
+ `npm run typeorm migration:run`  
  `npm run start`  
  
  ou com **yarn**  
  `yarn`  
- `yarn typeorm migration:run`
+ `yarn typeorm migration:run`  
  `yarn start`
 
 ## Licença
