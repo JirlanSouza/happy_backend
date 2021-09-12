@@ -21,7 +21,7 @@ com **npm**
  `yarn`  
  `yarn dev`
 
-## Licença
-Esta aplicação esta sob a licença MIT.
+## Licensa
+Esta aplicação esta sob a licensa [MIT](LICENSE).
     
   
